@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI금융응급실119 V2.2 - 대출신청서 + AI심사 + 전문가 검토</title>
-<meta name="description" content="2금융·3금융 후순위 전문. 대출신청서 10개 양식 + 등기부 PDF 첨부 + AI 자동심사 + 30년 전문가 정밀검토. 중개수수료 ZERO.">
-<meta property="og:title" content="AI금융응급실119 V2.2 - 30초 무료 대출진단">
+<title>AI금융응급실119 V2.3 - 대출신청서 + AI심사 + 전문가 검토</title>
+<meta name="description" content="2금융·3금융 후순위 전문. 대출신청서 양식 + 등기부 PDF 첨부 + AI 자동심사 + 30년 전문가 정밀검토. 중개수수료 ZERO.">
+<meta property="og:title" content="AI금융응급실119 V2.3 - 30초 무료 대출진단">
 <meta property="og:description" content="은행이 버려도 AI금융응급실119가 골든타임을 지켜드립니다">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" rel="stylesheet">
@@ -51,6 +51,15 @@ body {
   font-size: 13px; font-weight: 600; color: var(--gold);
 }
 .hero .ver { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 6px; }
+.hero .company-info {
+  background: rgba(212, 165, 116, 0.15);
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-top: 10px;
+  font-size: 11px;
+  border-left: 3px solid var(--gold);
+}
+.hero .company-info strong { color: var(--gold); font-weight: 700; }
 
 .alert-transparency {
   background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
@@ -66,6 +75,20 @@ body {
   padding: 12px; margin-bottom: 12px; font-size: 12px; color: var(--info); line-height: 1.6;
 }
 .process-info strong { font-weight: 700; }
+
+.ltv-guide {
+  background: var(--warn-bg);
+  border-left: 4px solid var(--gold);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: var(--text);
+}
+.ltv-guide h4 { font-size: 13px; color: var(--gold-dark); margin-bottom: 8px; font-weight: 700; }
+.ltv-guide table { width: 100%; font-size: 11px; }
+.ltv-guide th { padding: 4px 6px; font-size: 10px; }
+.ltv-guide td { padding: 4px 6px; font-size: 11px; }
 
 .card {
   background: var(--white); border-radius: 12px; padding: 18px;
@@ -178,6 +201,22 @@ body {
 .metric-value { font-size: 19px; font-weight: 800; color: var(--navy); }
 .metric-note { font-size: 10px; color: var(--text-light); margin-top: 3px; }
 
+.tier-group {
+  margin-bottom: 14px;
+}
+.tier-group-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+  padding: 6px 10px;
+  background: var(--bg);
+  border-radius: 6px;
+  border-left: 4px solid var(--info);
+}
+.tier-group-title.tier3 {
+  border-left-color: var(--red);
+}
 table { width: 100%; border-collapse: collapse; font-size: 12px; }
 thead { background: var(--bg); }
 th, td { padding: 9px 7px; text-align: left; border-bottom: 1px solid var(--border); }
@@ -190,6 +229,18 @@ tr.best td { font-weight: 600; }
 .badge-warn { background: var(--warn-bg); color: var(--warn); padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; }
 .badge-no { background: var(--bg); color: var(--text-light); padding: 2px 8px; border-radius: 10px; font-size: 10px; }
 .row-sub { font-size: 10px; color: var(--text-light); display: block; margin-top: 2px; font-weight: 400; }
+
+.matching-notice {
+  background: linear-gradient(135deg, var(--info-bg) 0%, #D1E4F7 100%);
+  border-left: 4px solid var(--info);
+  padding: 14px;
+  border-radius: 8px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--info);
+  line-height: 1.7;
+}
+.matching-notice strong { font-weight: 700; }
 
 .opinion-block { font-size: 13px; line-height: 1.7; }
 .opinion-block .grade {
@@ -242,6 +293,10 @@ tr.best td { font-weight: 600; }
 
 .footer { text-align: center; padding: 20px 0; font-size: 11px; color: var(--text-light); }
 .footer .brand { font-weight: 700; color: var(--navy); font-size: 13px; margin-bottom: 4px; }
+.footer .registry {
+  font-size: 11px; color: var(--text-muted); padding: 6px 12px; background: var(--info-bg);
+  border-radius: 6px; margin: 6px auto; display: inline-block; font-weight: 600;
+}
 .footer .disclaimer { margin-top: 8px; font-size: 10px; line-height: 1.7; padding: 8px; background: var(--bg); border-radius: 6px; }
 
 @media (max-width: 520px) {
@@ -256,11 +311,14 @@ tr.best td { font-weight: 600; }
 <div class="container">
 
   <div class="hero">
-    <span class="hero-badge">🚨 AI금융응급실119 V2.2</span>
+    <span class="hero-badge">🚨 AI금융응급실119 V2.3</span>
     <h1>대출신청서 + AI 자동심사 + 30년 전문가 검토</h1>
     <p class="sub">2·3금융 후순위 전문 · 등기부 첨부 · 카톡 회신 (1~2시간 내)</p>
     <div class="slogan">"은행이 버려도 AI금융응급실119가 골든타임을 지켜드립니다"</div>
-    <div class="ver">Version 2.2 · 대출신청서 양식 + 파일업로드</div>
+    <div class="company-info">
+      <strong>오케이대부캐피탈교대</strong> · 서초구청 대부 및 대부중개등록업체
+    </div>
+    <div class="ver">Version 2.3 · LTV 지역별 차등 + 금융권 그룹화</div>
   </div>
 
   <div class="alert-transparency">
@@ -273,6 +331,40 @@ tr.best td { font-weight: 600; }
 
   <div class="process-info">
     <strong>📋 진행순서:</strong> ① 신청서 작성 → ② 등기부·임대차계약서 첨부 → ③ AI 즉시 자동심사 → <strong>④ 30년 전문가 정밀검토 결과를 카톡으로 회신 (1~2시간 내)</strong>
+  </div>
+
+  <div class="ltv-guide">
+    <h4>📊 담보 LTV 최고한도 기준표</h4>
+    <table>
+      <thead>
+        <tr style="background: var(--white);">
+          <th>담보종류</th>
+          <th style="text-align:right;">서울</th>
+          <th style="text-align:right;">수도권</th>
+          <th style="text-align:right;">지방</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>아파트</strong></td>
+          <td style="text-align:right;">90%</td>
+          <td style="text-align:right;">80%</td>
+          <td style="text-align:right;">70%</td>
+        </tr>
+        <tr>
+          <td><strong>비아파트 (빌라·단독·오피스텔)</strong></td>
+          <td style="text-align:right;">75%</td>
+          <td style="text-align:right;">70%</td>
+          <td style="text-align:right;">65%</td>
+        </tr>
+        <tr>
+          <td><strong>토지</strong></td>
+          <td style="text-align:right;">60%</td>
+          <td style="text-align:right;">50%</td>
+          <td style="text-align:right;">—</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="card">
@@ -334,6 +426,7 @@ tr.best td { font-weight: 600; }
           <option value="officetel">주거용 오피스텔</option>
           <option value="villa">빌라/다세대</option>
           <option value="house">단독주택</option>
+          <option value="land">토지</option>
           <option value="commercial">상가/오피스</option>
         </select>
       </div>
@@ -596,19 +689,44 @@ tr.best td { font-weight: 600; }
     </div>
 
     <div class="card">
-      <div class="card-title"><span class="num">9</span> 캐피탈 vs 대부 동시비교</div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 38%;">금융권·업체</th>
-            <th style="width: 12%; text-align: right;">LTV</th>
-            <th style="width: 16%; text-align: right;">금리</th>
-            <th style="width: 20%; text-align: right;">한도</th>
-            <th style="width: 14%; text-align: center;">가능</th>
-          </tr>
-        </thead>
-        <tbody id="matrixBody"></tbody>
-      </table>
+      <div class="card-title"><span class="num">9</span> 금융권별 대출 비교</div>
+
+      <div class="tier-group">
+        <div class="tier-group-title">🏛 2금융권 (금리 7~13%, 안전)</div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 40%;">금융기관</th>
+              <th style="width: 12%; text-align: right;">LTV</th>
+              <th style="width: 18%; text-align: right;">금리범위</th>
+              <th style="width: 18%; text-align: right;">예상한도</th>
+              <th style="width: 12%; text-align: center;">가능</th>
+            </tr>
+          </thead>
+          <tbody id="tier2Body"></tbody>
+        </table>
+      </div>
+
+      <div class="tier-group">
+        <div class="tier-group-title tier3">🏦 3금융권 (금리 9~20%, 후순위 가능)</div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 40%;">업권</th>
+              <th style="width: 12%; text-align: right;">LTV</th>
+              <th style="width: 18%; text-align: right;">금리범위</th>
+              <th style="width: 18%; text-align: right;">예상한도</th>
+              <th style="width: 12%; text-align: center;">가능</th>
+            </tr>
+          </thead>
+          <tbody id="tier3Body"></tbody>
+        </table>
+      </div>
+
+      <div class="matching-notice">
+        💡 <strong>대출진행 확정시 전문 매칭 진행</strong><br>
+        전국 2·3금융권 금융기관은 <strong>수천 개</strong>가 운영중입니다. 위 표는 업권별 평균치이며, 진행 의사 확인 후 <strong>오케이대부캐피탈교대가 직접 정밀 매칭 작업</strong>을 통해 차주에게 가장 유리한 금융기관·상품을 선정해드립니다.
+      </div>
     </div>
 
     <div class="card">
@@ -637,7 +755,7 @@ tr.best td { font-weight: 600; }
       <div class="title">🛡 AI금융응급실119 고객권리 4대 보장</div>
       <div class="trust-grid">
         <div class="trust-item">중개수수료 ZERO</div>
-        <div class="trust-item">금감원 등록업체</div>
+        <div class="trust-item">서초구청 등록업체</div>
         <div class="trust-item">법정금리 한도 준수</div>
         <div class="trust-item">개인정보 외부유출 없음</div>
       </div>
@@ -647,7 +765,7 @@ tr.best td { font-weight: 600; }
 
   <div class="footer">
     <div class="brand">AI금융응급실119 · 권상훈의 대출플랫폼</div>
-    <div>OK대부자본교대 · 금융감독원 등록대부업체</div>
+    <div class="registry">오케이대부캐피탈교대 · 서초구청 대부 및 대부중개등록업체</div>
     <div class="disclaimer">
       ※ 본 결과는 AI 자동심사 추정치이며 실제 승인을 보장하지 않습니다.<br>
       ※ 2026년 5월 스트레스DSR 3단계 시행 기준 산정되었습니다.<br>
@@ -660,66 +778,68 @@ tr.best td { font-weight: 600; }
 
 <script>
 const VALUATION_DB = {
-  "서초구": { apt_per_pyeong: 6500, villa_per_pyeong: 2800, house_per_pyeong: 5500 },
-  "강남구": { apt_per_pyeong: 7500, villa_per_pyeong: 3200, house_per_pyeong: 6500 },
-  "송파구": { apt_per_pyeong: 5500, villa_per_pyeong: 2400, house_per_pyeong: 4800 },
-  "용산구": { apt_per_pyeong: 5800, villa_per_pyeong: 2700, house_per_pyeong: 5200 },
-  "마포구": { apt_per_pyeong: 4800, villa_per_pyeong: 2300, house_per_pyeong: 4200 },
-  "성동구": { apt_per_pyeong: 4500, villa_per_pyeong: 2200, house_per_pyeong: 4000 },
-  "광진구": { apt_per_pyeong: 3800, villa_per_pyeong: 1900, house_per_pyeong: 3500 },
-  "동대문구": { apt_per_pyeong: 3200, villa_per_pyeong: 1600, house_per_pyeong: 3000 },
-  "성북구": { apt_per_pyeong: 3200, villa_per_pyeong: 1600, house_per_pyeong: 3000 },
-  "강북구": { apt_per_pyeong: 2700, villa_per_pyeong: 1400, house_per_pyeong: 2500 },
-  "도봉구": { apt_per_pyeong: 2700, villa_per_pyeong: 1300, house_per_pyeong: 2400 },
-  "노원구": { apt_per_pyeong: 3000, villa_per_pyeong: 1500, house_per_pyeong: 2700 },
-  "은평구": { apt_per_pyeong: 3200, villa_per_pyeong: 1600, house_per_pyeong: 2900 },
-  "서대문구": { apt_per_pyeong: 3500, villa_per_pyeong: 1700, house_per_pyeong: 3200 },
-  "양천구": { apt_per_pyeong: 3800, villa_per_pyeong: 1800, house_per_pyeong: 3400 },
-  "강서구": { apt_per_pyeong: 3300, villa_per_pyeong: 1700, house_per_pyeong: 3000 },
-  "구로구": { apt_per_pyeong: 2900, villa_per_pyeong: 1500, house_per_pyeong: 2700 },
-  "금천구": { apt_per_pyeong: 2700, villa_per_pyeong: 1400, house_per_pyeong: 2500 },
-  "영등포구": { apt_per_pyeong: 3800, villa_per_pyeong: 1800, house_per_pyeong: 3400 },
-  "동작구": { apt_per_pyeong: 3500, villa_per_pyeong: 1700, house_per_pyeong: 3200 },
-  "관악구": { apt_per_pyeong: 2900, villa_per_pyeong: 1500, house_per_pyeong: 2700 },
-  "강동구": { apt_per_pyeong: 3800, villa_per_pyeong: 1800, house_per_pyeong: 3400 },
-  "종로구": { apt_per_pyeong: 4500, villa_per_pyeong: 2200, house_per_pyeong: 4500 },
-  "중랑구": { apt_per_pyeong: 2800, villa_per_pyeong: 1400, house_per_pyeong: 2600 },
-  "해운대구": { apt_per_pyeong: 2800, villa_per_pyeong: 1300, house_per_pyeong: 2400 },
-  "수영구": { apt_per_pyeong: 2400, villa_per_pyeong: 1100, house_per_pyeong: 2100 },
-  "부산": { apt_per_pyeong: 1900, villa_per_pyeong: 950, house_per_pyeong: 1700 },
-  "대구": { apt_per_pyeong: 1700, villa_per_pyeong: 850, house_per_pyeong: 1500 },
-  "동대구": { apt_per_pyeong: 1900, villa_per_pyeong: 900, house_per_pyeong: 1600 },
-  "수성구": { apt_per_pyeong: 2400, villa_per_pyeong: 1100, house_per_pyeong: 2000 },
-  "인천": { apt_per_pyeong: 1900, villa_per_pyeong: 950, house_per_pyeong: 1700 },
-  "송도": { apt_per_pyeong: 2800, villa_per_pyeong: 1300, house_per_pyeong: 2400 },
-  "광주": { apt_per_pyeong: 1500, villa_per_pyeong: 750, house_per_pyeong: 1300 },
-  "대전": { apt_per_pyeong: 1700, villa_per_pyeong: 850, house_per_pyeong: 1500 },
-  "울산": { apt_per_pyeong: 1600, villa_per_pyeong: 800, house_per_pyeong: 1400 },
-  "수원": { apt_per_pyeong: 2400, villa_per_pyeong: 1200, house_per_pyeong: 2000 },
-  "성남": { apt_per_pyeong: 3500, villa_per_pyeong: 1700, house_per_pyeong: 3000 },
-  "분당": { apt_per_pyeong: 4200, villa_per_pyeong: 2000, house_per_pyeong: 3600 },
-  "용인": { apt_per_pyeong: 2200, villa_per_pyeong: 1100, house_per_pyeong: 1900 },
-  "안양": { apt_per_pyeong: 2700, villa_per_pyeong: 1300, house_per_pyeong: 2300 },
-  "고양": { apt_per_pyeong: 2400, villa_per_pyeong: 1200, house_per_pyeong: 2000 },
-  "일산": { apt_per_pyeong: 2700, villa_per_pyeong: 1300, house_per_pyeong: 2300 },
-  "남양주": { apt_per_pyeong: 2100, villa_per_pyeong: 1000, house_per_pyeong: 1800 },
-  "부천": { apt_per_pyeong: 2300, villa_per_pyeong: 1100, house_per_pyeong: 2000 },
-  "광명": { apt_per_pyeong: 2900, villa_per_pyeong: 1400, house_per_pyeong: 2500 }
+  "서초구": { apt_per_pyeong: 6500, villa_per_pyeong: 2800, house_per_pyeong: 5500, land_per_pyeong: 4500 },
+  "강남구": { apt_per_pyeong: 7500, villa_per_pyeong: 3200, house_per_pyeong: 6500, land_per_pyeong: 5500 },
+  "송파구": { apt_per_pyeong: 5500, villa_per_pyeong: 2400, house_per_pyeong: 4800, land_per_pyeong: 4000 },
+  "용산구": { apt_per_pyeong: 5800, villa_per_pyeong: 2700, house_per_pyeong: 5200, land_per_pyeong: 4500 },
+  "마포구": { apt_per_pyeong: 4800, villa_per_pyeong: 2300, house_per_pyeong: 4200, land_per_pyeong: 3500 },
+  "성동구": { apt_per_pyeong: 4500, villa_per_pyeong: 2200, house_per_pyeong: 4000, land_per_pyeong: 3300 },
+  "광진구": { apt_per_pyeong: 3800, villa_per_pyeong: 1900, house_per_pyeong: 3500, land_per_pyeong: 2900 },
+  "동대문구": { apt_per_pyeong: 3200, villa_per_pyeong: 1600, house_per_pyeong: 3000, land_per_pyeong: 2500 },
+  "성북구": { apt_per_pyeong: 3200, villa_per_pyeong: 1600, house_per_pyeong: 3000, land_per_pyeong: 2500 },
+  "강북구": { apt_per_pyeong: 2700, villa_per_pyeong: 1400, house_per_pyeong: 2500, land_per_pyeong: 2200 },
+  "도봉구": { apt_per_pyeong: 2700, villa_per_pyeong: 1300, house_per_pyeong: 2400, land_per_pyeong: 2100 },
+  "노원구": { apt_per_pyeong: 3000, villa_per_pyeong: 1500, house_per_pyeong: 2700, land_per_pyeong: 2300 },
+  "은평구": { apt_per_pyeong: 3200, villa_per_pyeong: 1600, house_per_pyeong: 2900, land_per_pyeong: 2400 },
+  "서대문구": { apt_per_pyeong: 3500, villa_per_pyeong: 1700, house_per_pyeong: 3200, land_per_pyeong: 2700 },
+  "양천구": { apt_per_pyeong: 3800, villa_per_pyeong: 1800, house_per_pyeong: 3400, land_per_pyeong: 2900 },
+  "강서구": { apt_per_pyeong: 3300, villa_per_pyeong: 1700, house_per_pyeong: 3000, land_per_pyeong: 2500 },
+  "구로구": { apt_per_pyeong: 2900, villa_per_pyeong: 1500, house_per_pyeong: 2700, land_per_pyeong: 2300 },
+  "금천구": { apt_per_pyeong: 2700, villa_per_pyeong: 1400, house_per_pyeong: 2500, land_per_pyeong: 2200 },
+  "영등포구": { apt_per_pyeong: 3800, villa_per_pyeong: 1800, house_per_pyeong: 3400, land_per_pyeong: 2900 },
+  "동작구": { apt_per_pyeong: 3500, villa_per_pyeong: 1700, house_per_pyeong: 3200, land_per_pyeong: 2700 },
+  "관악구": { apt_per_pyeong: 2900, villa_per_pyeong: 1500, house_per_pyeong: 2700, land_per_pyeong: 2300 },
+  "강동구": { apt_per_pyeong: 3800, villa_per_pyeong: 1800, house_per_pyeong: 3400, land_per_pyeong: 2900 },
+  "종로구": { apt_per_pyeong: 4500, villa_per_pyeong: 2200, house_per_pyeong: 4500, land_per_pyeong: 3800 },
+  "중랑구": { apt_per_pyeong: 2800, villa_per_pyeong: 1400, house_per_pyeong: 2600, land_per_pyeong: 2200 },
+  "해운대구": { apt_per_pyeong: 2800, villa_per_pyeong: 1300, house_per_pyeong: 2400, land_per_pyeong: 2000 },
+  "수영구": { apt_per_pyeong: 2400, villa_per_pyeong: 1100, house_per_pyeong: 2100, land_per_pyeong: 1800 },
+  "부산": { apt_per_pyeong: 1900, villa_per_pyeong: 950, house_per_pyeong: 1700, land_per_pyeong: 1500 },
+  "대구": { apt_per_pyeong: 1700, villa_per_pyeong: 850, house_per_pyeong: 1500, land_per_pyeong: 1300 },
+  "동대구": { apt_per_pyeong: 1900, villa_per_pyeong: 900, house_per_pyeong: 1600, land_per_pyeong: 1400 },
+  "수성구": { apt_per_pyeong: 2400, villa_per_pyeong: 1100, house_per_pyeong: 2000, land_per_pyeong: 1700 },
+  "인천": { apt_per_pyeong: 1900, villa_per_pyeong: 950, house_per_pyeong: 1700, land_per_pyeong: 1500 },
+  "송도": { apt_per_pyeong: 2800, villa_per_pyeong: 1300, house_per_pyeong: 2400, land_per_pyeong: 2000 },
+  "광주": { apt_per_pyeong: 1500, villa_per_pyeong: 750, house_per_pyeong: 1300, land_per_pyeong: 1100 },
+  "대전": { apt_per_pyeong: 1700, villa_per_pyeong: 850, house_per_pyeong: 1500, land_per_pyeong: 1300 },
+  "울산": { apt_per_pyeong: 1600, villa_per_pyeong: 800, house_per_pyeong: 1400, land_per_pyeong: 1200 },
+  "수원": { apt_per_pyeong: 2400, villa_per_pyeong: 1200, house_per_pyeong: 2000, land_per_pyeong: 1700 },
+  "성남": { apt_per_pyeong: 3500, villa_per_pyeong: 1700, house_per_pyeong: 3000, land_per_pyeong: 2500 },
+  "분당": { apt_per_pyeong: 4200, villa_per_pyeong: 2000, house_per_pyeong: 3600, land_per_pyeong: 3000 },
+  "용인": { apt_per_pyeong: 2200, villa_per_pyeong: 1100, house_per_pyeong: 1900, land_per_pyeong: 1600 },
+  "안양": { apt_per_pyeong: 2700, villa_per_pyeong: 1300, house_per_pyeong: 2300, land_per_pyeong: 2000 },
+  "고양": { apt_per_pyeong: 2400, villa_per_pyeong: 1200, house_per_pyeong: 2000, land_per_pyeong: 1700 },
+  "일산": { apt_per_pyeong: 2700, villa_per_pyeong: 1300, house_per_pyeong: 2300, land_per_pyeong: 2000 },
+  "남양주": { apt_per_pyeong: 2100, villa_per_pyeong: 1000, house_per_pyeong: 1800, land_per_pyeong: 1500 },
+  "부천": { apt_per_pyeong: 2300, villa_per_pyeong: 1100, house_per_pyeong: 2000, land_per_pyeong: 1700 },
+  "광명": { apt_per_pyeong: 2900, villa_per_pyeong: 1400, house_per_pyeong: 2500, land_per_pyeong: 2100 }
 };
 
-const LENDERS = [
-  { name: 'JT친애저축은행', tier: 'saving_bank', ltv_apt: 0.80, ltv_villa: 0.70, rate: 9.0, type: 2 },
-  { name: 'OK저축은행', tier: 'saving_bank', ltv_apt: 0.80, ltv_villa: 0.70, rate: 8.5, type: 2 },
-  { name: 'OK캐피탈', tier: 'capital', ltv_apt: 0.85, ltv_villa: 0.75, rate: 11.5, type: 2 },
-  { name: 'JB우리캐피탈', tier: 'capital', ltv_apt: 0.85, ltv_villa: 0.75, rate: 12.0, type: 2 },
-  { name: '메리츠캐피탈', tier: 'capital', ltv_apt: 0.85, ltv_villa: 0.75, rate: 13.5, type: 2 },
-  { name: '웰컴캐피탈', tier: 'capital', ltv_apt: 0.85, ltv_villa: 0.75, rate: 12.5, type: 2 },
-  { name: 'OK대부자본교대', tier: 'daebu', ltv_apt: 0.90, ltv_villa: 0.80, rate: 16.0, type: 3, isOurs: true },
-  { name: '산와대부', tier: 'daebu', ltv_apt: 0.90, ltv_villa: 0.80, rate: 18.0, type: 3 },
-  { name: '러시앤캐시', tier: 'daebu', ltv_apt: 0.90, ltv_villa: 0.80, rate: 19.0, type: 3 }
+const TIER2_GROUPS = [
+  { name: '저축은행', desc: '전국 79개사', rate_min: 7.0, rate_max: 11.0 },
+  { name: '농협 (지역농협)', desc: '전국 1,118개 조합', rate_min: 7.5, rate_max: 12.0 },
+  { name: '수협', desc: '전국 90개 조합', rate_min: 7.5, rate_max: 12.0 },
+  { name: '축협', desc: '전국 130개 조합', rate_min: 7.5, rate_max: 12.0 },
+  { name: '산림조합', desc: '전국 142개 조합', rate_min: 8.0, rate_max: 12.5 },
+  { name: '새마을금고', desc: '전국 1,294개 금고', rate_min: 7.5, rate_max: 12.5 },
+  { name: '신협', desc: '전국 866개 조합', rate_min: 7.5, rate_max: 12.0 }
 ];
 
-const ROOM_DEDUCTION = { seoul: 5500, metro: 4800, local: 2800, rural: 2500 };
+const TIER3_GROUPS = [
+  { name: '캐피탈사', desc: '여신전문금융', rate_min: 9.0, rate_max: 13.0 },
+  { name: '대형대부', desc: '자산 100억 이상', rate_min: 11.0, rate_max: 15.0 },
+  { name: '소형대부 (오케이대부캐피탈교대 ★)', desc: '서초구청 등록', rate_min: 14.0, rate_max: 20.0, isOurs: true }
+];
 
 const CASES = {
   jamwon: {
@@ -786,6 +906,24 @@ function togglePurposeDetail() {
   document.getElementById('purposeDetailRow').style.display = v === 'other' ? '' : 'none';
 }
 
+function getLocationCategory(address) {
+  if (address.includes('서울')) return 'seoul';
+  if (address.includes('경기') || address.includes('인천') || /수원|성남|분당|용인|안양|고양|일산|남양주|부천|광명/.test(address)) return 'metro';
+  return 'local';
+}
+
+function getMaxLTV(assetType, locationCategory) {
+  const ltvTable = {
+    apt: { seoul: 0.90, metro: 0.80, local: 0.70 },
+    officetel: { seoul: 0.75, metro: 0.70, local: 0.65 },
+    villa: { seoul: 0.75, metro: 0.70, local: 0.65 },
+    house: { seoul: 0.75, metro: 0.70, local: 0.65 },
+    land: { seoul: 0.60, metro: 0.50, local: 0.40 },
+    commercial: { seoul: 0.70, metro: 0.65, local: 0.60 }
+  };
+  return (ltvTable[assetType] || ltvTable.apt)[locationCategory] || 0.70;
+}
+
 function fetchAIValuation() {
   const address = document.getElementById('address').value.trim();
   const banner = document.getElementById('aiBanner');
@@ -821,6 +959,7 @@ function fetchAIValuation() {
   let perPyeong;
   if (assetType === 'apt' || assetType === 'officetel') perPyeong = data.apt_per_pyeong;
   else if (assetType === 'villa') perPyeong = data.villa_per_pyeong;
+  else if (assetType === 'land') perPyeong = data.land_per_pyeong;
   else perPyeong = data.house_per_pyeong;
 
   const estimated = Math.round(pyeong * perPyeong);
@@ -840,7 +979,7 @@ function fetchAIValuation() {
 }
 
 function getAssetLabel(type) {
-  return { apt:'아파트', officetel:'오피스텔', villa:'빌라', house:'단독주택', commercial:'상가' }[type] || '담보';
+  return { apt:'아파트', officetel:'오피스텔', villa:'빌라', house:'단독주택', land:'토지', commercial:'상가' }[type] || '담보';
 }
 
 function handleFile(input, slot) {
@@ -918,21 +1057,8 @@ function calc3WayValuation(appraisal, real, auction, assetType) {
   if (values.length === 0) return 0;
   const minV = Math.min(...values);
   let final = Math.round(minV * 0.95);
-  const adj = { apt:1.0, officetel:0.95, villa:0.90, house:0.85, commercial:0.80 }[assetType] || 1.0;
+  const adj = { apt:1.0, officetel:0.95, villa:0.90, house:0.85, land:0.80, commercial:0.80 }[assetType] || 1.0;
   return Math.round(final * adj);
-}
-
-function getRegionKey(address) {
-  if (address.includes('서울')) return 'seoul';
-  if (address.includes('경기') || address.includes('인천')) return 'metro';
-  if (/대구|부산|광주|대전|울산/.test(address)) return 'local';
-  return 'rural';
-}
-
-function calcRoomDeduction(regionKey, rooms, tenantConsent, rentDeposit) {
-  if (rentDeposit > 0 && tenantConsent === 'yes') return 0;
-  if (rentDeposit > 0 && tenantConsent === 'no') return rentDeposit;
-  return (ROOM_DEDUCTION[regionKey] || 2500) * (rooms || 1);
 }
 
 function submitApplication() {
@@ -977,15 +1103,18 @@ function submitApplication() {
   }
 
   const finalValue = calc3WayValuation(input.appraisalPrice, input.realPrice, input.auctionPrice, input.assetType);
-  const regionKey = getRegionKey(input.address);
-  const roomDeduction = calcRoomDeduction(regionKey, input.rooms, input.tenantConsent, input.rentDeposit);
+  const locationCategory = getLocationCategory(input.address);
+  const maxLTV = getMaxLTV(input.assetType, locationCategory);
+
+  const roomDeduction = (input.tenantConsent === 'none' && input.rentDeposit === 0) ?
+    ({ seoul: 5500, metro: 4800, local: 2800 }[locationCategory] || 2500) * (input.rooms || 1) : 0;
   const totalDeduction = input.firstLien + input.secondLien
     + (input.tenantConsent === 'no' && input.rentDeposit > 0 ? input.rentDeposit : 0)
-    + (input.tenantConsent === 'none' && input.rentDeposit === 0 ? roomDeduction : 0);
+    + roomDeduction;
 
-  currentResult = { input, finalValue, totalDeduction };
+  currentResult = { input, finalValue, totalDeduction, maxLTV, locationCategory };
 
-  renderResult(input, finalValue, totalDeduction);
+  renderResult(input, finalValue, totalDeduction, maxLTV, locationCategory);
   generateKakaoMessage(input, finalValue, totalDeduction);
 
   document.getElementById('resultArea').classList.add('show');
@@ -994,53 +1123,76 @@ function submitApplication() {
   }, 200);
 }
 
-function renderResult(input, finalValue, totalDeduction) {
+function renderResult(input, finalValue, totalDeduction, maxLTV, locationCategory) {
   document.getElementById('finalValue').textContent = formatToKorean(finalValue);
 
   const requestLtv = finalValue > 0 ? (input.requestAmount / finalValue * 100).toFixed(1) : 0;
   document.getElementById('requestLtv').textContent = requestLtv + '%';
   let ltvNote = '';
-  if (requestLtv < 70) ltvNote = '안정권 · 2금융 가능';
-  else if (requestLtv < 85) ltvNote = '캐피탈 후순위 권장';
-  else if (requestLtv < 95) ltvNote = '대부업 진입선';
-  else ltvNote = '한도 초과 · 역제안 필요';
+  const maxLTVPct = (maxLTV * 100).toFixed(0);
+  if (requestLtv < 60) ltvNote = '안정권 · 2금융 가능 (최대 ' + maxLTVPct + '%)';
+  else if (requestLtv < 75) ltvNote = '2금융 권장 (최대 ' + maxLTVPct + '%)';
+  else if (requestLtv < maxLTV * 100) ltvNote = '3금융 후순위 진입 (최대 ' + maxLTVPct + '%)';
+  else ltvNote = '한도 초과 · 역제안 필요 (최대 ' + maxLTVPct + '%)';
   document.getElementById('requestLtvNote').textContent = ltvNote;
 
-  const isApt = input.assetType === 'apt' || input.assetType === 'officetel';
+  let tier2Html = '';
   let bestSafe = null;
   let bestSafeAmount = 0;
 
-  const rows = LENDERS.map(lender => {
-    const ltv = lender[isApt ? 'ltv_apt' : 'ltv_villa'];
-    let net = Math.max(0, Math.round(finalValue * ltv) - totalDeduction);
-    if (input.borrowerType === 'none' && lender.type < 3) net = 0;
-    if (input.creditGrade >= 6 && lender.type < 3) net = 0;
-    if (input.borrowerType === 'leave' && lender.tier === 'saving_bank') net = Math.round(net * 0.5);
+  TIER2_GROUPS.forEach(group => {
+    const ltvUsed = Math.min(maxLTV, 0.85);
+    let gross = Math.round(finalValue * ltvUsed);
+    let net = Math.max(0, gross - totalDeduction);
+
+    if (input.borrowerType === 'none') net = 0;
+    if (input.creditGrade >= 6) net = 0;
+    if (input.borrowerType === 'leave') net = Math.round(net * 0.5);
 
     let cls = 'badge-ok', txt = '가능';
     if (net <= 0) { cls = 'badge-no'; txt = '불가'; }
-    else if (input.borrowerType === 'leave' && lender.tier === 'saving_bank') { cls = 'badge-warn'; txt = '제한'; }
+    else if (input.borrowerType === 'leave') { cls = 'badge-warn'; txt = '제한'; }
 
-    if (net > 0 && lender.type === 2 && net > bestSafeAmount) {
+    if (net > 0 && net > bestSafeAmount) {
       bestSafeAmount = net;
-      bestSafe = lender.name;
+      bestSafe = group.name;
     }
-    return { lender, ltv: Math.round(ltv*100), net, cls, txt };
-  });
 
-  let html = '';
-  rows.forEach(r => {
-    const isBest = r.lender.name === bestSafe;
-    const tierLabel = r.lender.type === 2 ? '2금융' : '3금융';
-    const ours = r.lender.isOurs ? ' <span style="color: var(--red); font-weight: 700;">★</span>' : '';
-    html += '<tr' + (isBest?' class="best"':'') + '><td>' + r.lender.name + ours + '<span class="row-sub">' + tierLabel + '</span></td><td class="amount">' + r.ltv + '%</td><td class="amount">' + r.lender.rate.toFixed(1) + '%</td><td class="amount">' + (r.net > 0 ? formatToKorean(r.net) : '−') + '</td><td class="center"><span class="' + r.cls + '">' + r.txt + '</span></td></tr>';
+    tier2Html += '<tr><td>' + group.name + '<span class="row-sub">' + group.desc + '</span></td>' +
+      '<td class="amount">' + Math.round(ltvUsed*100) + '%</td>' +
+      '<td class="amount">' + group.rate_min.toFixed(1) + '~' + group.rate_max.toFixed(1) + '%</td>' +
+      '<td class="amount">' + (net > 0 ? formatToKorean(net) : '−') + '</td>' +
+      '<td class="center"><span class="' + cls + '">' + txt + '</span></td></tr>';
   });
-  document.getElementById('matrixBody').innerHTML = html;
+  document.getElementById('tier2Body').innerHTML = tier2Html;
 
-  const maxAmount = Math.max(0, Math.round(finalValue * 0.85) - totalDeduction);
+  let tier3Html = '';
+  TIER3_GROUPS.forEach(group => {
+    const ltvUsed = maxLTV;
+    let gross = Math.round(finalValue * ltvUsed);
+    let net = Math.max(0, gross - totalDeduction);
+
+    let cls = 'badge-ok', txt = '가능';
+    if (net <= 0) { cls = 'badge-no'; txt = '불가'; }
+
+    const ours = group.isOurs ? ' <span style="color: var(--red); font-weight: 700;">★</span>' : '';
+    tier3Html += '<tr' + (group.isOurs?' class="best"':'') + '><td>' + group.name + ours + '<span class="row-sub">' + group.desc + '</span></td>' +
+      '<td class="amount">' + Math.round(ltvUsed*100) + '%</td>' +
+      '<td class="amount">' + group.rate_min.toFixed(1) + '~' + group.rate_max.toFixed(1) + '%</td>' +
+      '<td class="amount">' + (net > 0 ? formatToKorean(net) : '−') + '</td>' +
+      '<td class="center"><span class="' + cls + '">' + txt + '</span></td></tr>';
+  });
+  document.getElementById('tier3Body').innerHTML = tier3Html;
+
+  const maxAmount = Math.max(0, Math.round(finalValue * maxLTV) - totalDeduction);
   let grade = maxAmount > 30000 ? 'A' : maxAmount > 15000 ? 'B' : maxAmount > 5000 ? 'C' : 'D';
 
   let opHtml = '<span class="grade grade-' + grade + '">진행가능성 ' + grade + '등급</span>';
+
+  const locLabel = { seoul: '서울', metro: '수도권', local: '지방' }[locationCategory];
+  const assetLabel = getAssetLabel(input.assetType);
+  opHtml += '<div class="line info">' + locLabel + ' ' + assetLabel + ' 최대 LTV: ' + (maxLTV*100).toFixed(0) + '%</div>';
+
   const lienRatio = finalValue > 0 ? input.firstLien / finalValue : 0;
   if (lienRatio > 0.85) opHtml += '<div class="line danger">1순위 잠식률 ' + Math.round(lienRatio*100) + '% → 후순위 거의 불가, 1순위 대환+RTI사업자 단일구조 권고</div>';
   if (input.borrowerType === 'leave') opHtml += '<div class="line warn">육아휴직중 → 저축은행 DSR 막힘, 캐피탈·대부업 또는 사업자 트랙 권고</div>';
@@ -1049,10 +1201,9 @@ function renderResult(input, finalValue, totalDeduction) {
   if (input.requestAmount > maxAmount && maxAmount > 0) opHtml += '<div class="line danger">요청금액 ' + formatToKorean(input.requestAmount) + '이 최대 가용한도 ' + formatToKorean(maxAmount) + ' 초과 → 역제안 필요</div>';
 
   if (grade === 'A' || grade === 'B') {
-    const best2 = LENDERS.filter(l => l.type === 2).sort((a,b)=>a.rate-b.rate)[0];
-    opHtml += '<div class="line ok"><strong>최적 추천:</strong> ' + best2.name + ' / 금리 ' + best2.rate.toFixed(1) + '% / LTV 80~85%</div>';
+    opHtml += '<div class="line ok"><strong>최적 추천:</strong> ' + (bestSafe || '2금융권') + ' / 금리 7~13% / LTV ' + Math.min(maxLTV*100, 85).toFixed(0) + '%</div>';
   } else if (grade === 'C') {
-    opHtml += '<div class="line info"><strong>최적 추천:</strong> 캐피탈 후순위 또는 OK대부자본교대 직거래</div>';
+    opHtml += '<div class="line info"><strong>최적 추천:</strong> 3금융권 후순위 또는 오케이대부캐피탈교대 직거래</div>';
   } else {
     opHtml += '<div class="line danger"><strong>역제안 필요:</strong> 1순위 대환·RTI사업자·자금용도 재조정 검토</div>';
   }
@@ -1083,7 +1234,7 @@ function generateKakaoMessage(input, finalValue, totalDeduction) {
   if (uploadedFiles[2]) fileList.push('② 임대차계약서: ' + uploadedFiles[2].name);
   if (uploadedFiles[3] && uploadedFiles[3].length > 0) fileList.push('③ 기타서류: ' + uploadedFiles[3].length + '개');
 
-  const message = '[AI금융응급실119 V2.2 신규신청]\n━━━━━━━━━━━━━━━━━━\n' +
+  const message = '[AI금융응급실119 V2.3 신규신청]\n━━━━━━━━━━━━━━━━━━\n' +
     '■ 신청자: ' + input.borrowerName + ' (' + input.contactPhone + ')\n' +
     '■ 담보제공: ' + (input.ownerName || '동일인') + '\n' +
     '■ 주소: ' + input.address + '\n' +
