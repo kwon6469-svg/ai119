@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI금융응급실119 V2.0 - 2·3금융 대출자동심사 + 대환세이브</title>
+<meta name="description" content="2금융·3금융 후순위 전문 AI심사. LTV 7단계 금리투명화·캐피탈vs대부 비교·대환세이브 즉시계산. 중개수수료 ZERO.">
+<meta property="og:title" content="AI금융응급실119 V2.0">
+<meta property="og:description" content="은행이 버려도 AI금융응급실119가 골든타임을 지켜드립니다">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #1B2951;
+  --navy-light: #2A3F6F;
+  --red: #C73E3A;
+  --red-dark: #A02E2A;
+  --gold: #D4A574;
+  --gold-dark: #B8821A;
+  --bg: #F5F7FA;
+  --white: #FFFFFF;
+  --text: #1A1F36;
+  --text-muted: #5F6478;
+  --text-light: #8A8F9C;
+  --border: #E0E3EB;
+  --success: #1F8A4C;
+  --success-bg: #E8F5EC;
+  --warn: #B8821A;
+  --warn-bg: #FFF8E6;
+  --danger: #C73E3A;
+  --danger-bg: #FDECEC;
+  --info: #185FA5;
+  --info-bg: #E6F1FB;
+}
+body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 760px; margin: 0 auto; padding: 12px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: white;
+  padding: 24px 20px;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 140px; height: 140px;
+  background: var(--gold);
+  opacity: 0.12;
+  border-radius: 50%;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--red);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.hero h1 { font-size: 24px; margin-bottom: 6px; font-weight: 800; letter-spacing: -0.5px; }
+.hero .sub { font-size: 14px; opacity: 0.92; margin-bottom: 12px; }
+.hero .slogan {
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+}
+.hero .ver { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 6px; }
+
+/* TRANSPARENCY ALERT */
+.alert-transparency {
+  background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+  color: white;
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border-left: 4px solid var(--gold);
+}
+.alert-transparency .title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.alert-transparency .body { font-size: 12px; line-height: 1.6; opacity: 0.95; }
+.alert-transparency .body strong { color: var(--gold); font-weight: 700; }
+
+/* CARD */
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--navy);
+}
+.card-title .num {
+  background: var(--red);
+  color: white;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* FIELD */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.field-row.three { grid-template-columns: 1fr 1fr 1fr; }
+.field-row.one { grid-template-columns: 1fr; }
+.field label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.field label .req { color: var(--red); }
+.field input, .field select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--white);
+  color: var(--text);
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field input:focus, .field select:focus {
+  outline: none;
+  border-color: var(--navy-light);
+  box-shadow: 0 0 0 3px rgba(42, 63, 111, 0.1);
+}
+.help-text { font-size: 11px; color: var(--text-light); margin-top: 3px; }
+
+/* BUTTON */
+.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 6px;
+  transition: transform 0.1s;
+}
+.btn-primary:hover { transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+.btn-quick {
+  background: var(--info-bg);
+  color: var(--info);
+  border: 1px solid var(--info);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  margin: 2px;
+}
+.btn-quick:hover { background: var(--info); color: white; }
+
+.quick-cases { background: var(--info-bg); padding: 10px; border-radius: 8px; margin-bottom: 10px; }
+.quick-cases .label { font-size: 11px; font-weight: 700; color: var(--info); margin-bottom: 6px; }
+
+/* RESULT */
+.result { display: none; }
+.result.show { display: block; }
+
+/* METRIC */
+.metric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.metric {
+  background: var(--bg);
+  border-left: 4px solid var(--navy);
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+.metric-label { font-size: 11px; color: var(--text-muted); margin-bottom: 2px; font-weight: 500; }
+.metric-value { font-size: 19px; font-weight: 800; color: var(--navy); }
+.metric-note { font-size: 10px; color: var(--text-light); margin-top: 3px; }
+
+.valuation-detail {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--bg);
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+.valuation-detail .label { font-weight: 600; color: var(--text); }
+
+/* LTV SLIDER */
+.ltv-control {
+  background: var(--bg);
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.ltv-control .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.ltv-control .label { font-size: 13px; font-weight: 700; color: var(--navy); }
+.ltv-control .value {
+  background: var(--red);
+  color: white;
+  padding: 4px 14px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 800;
+}
+.ltv-slider {
+  width: 100%;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.ltv-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px; height: 22px;
+  background: var(--red);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.ltv-slider::-moz-range-thumb {
+  width: 22px; height: 22px;
+  background: var(--red);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid white;
+}
+.ltv-tick-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding: 0 4px;
+}
+.ltv-tick {
+  font-size: 10px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+.ltv-current-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+.ltv-info-cell {
+  background: var(--white);
+  padding: 8px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+.ltv-info-cell .lbl { font-size: 10px; color: var(--text-muted); margin-bottom: 2px; }
+.ltv-info-cell .val { font-size: 14px; font-weight: 700; color: var(--navy); }
+.ltv-info-cell.highlight { background: var(--red); color: white; }
+.ltv-info-cell.highlight .lbl, .ltv-info-cell.highlight .val { color: white; }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+thead { background: var(--bg); }
+th, td { padding: 9px 7px; text-align: left; border-bottom: 1px solid var(--border); }
+th { font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
+td.amount { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+td.center { text-align: center; }
+tr.best { background: var(--success-bg); }
+tr.best td { font-weight: 600; }
+.badge-ok { background: var(--success-bg); color: var(--success); padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; }
+.badge-warn { background: var(--warn-bg); color: var(--warn); padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; }
+.badge-no { background: var(--bg); color: var(--text-light); padding: 2px 8px; border-radius: 10px; font-size: 10px; }
+.row-sub { font-size: 10px; color: var(--text-light); display: block; margin-top: 2px; font-weight: 400; }
+
+/* REFINANCE SAVE */
+.save-hero {
+  background: linear-gradient(135deg, var(--success-bg) 0%, #D4EDDA 100%);
+  border-left: 5px solid var(--success);
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.save-hero .small { font-size: 12px; color: var(--success); font-weight: 600; margin-bottom: 4px; }
+.save-hero .big { font-size: 28px; font-weight: 900; color: var(--success); margin-bottom: 4px; letter-spacing: -1px; }
+.save-hero .desc { font-size: 12px; color: var(--text); line-height: 1.6; }
+.save-detail {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.save-detail .row { display: flex; justify-content: space-between; padding: 4px 0; }
+.save-detail .row.total { border-top: 1px solid var(--border); margin-top: 4px; padding-top: 8px; font-weight: 700; color: var(--success); font-size: 13px; }
+
+/* OPINION */
+.opinion-block { font-size: 13px; line-height: 1.7; }
+.opinion-block .grade {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 13px;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+.grade-A { background: var(--success-bg); color: var(--success); }
+.grade-B { background: var(--info-bg); color: var(--info); }
+.grade-C { background: var(--warn-bg); color: var(--warn); }
+.grade-D { background: var(--danger-bg); color: var(--danger); }
+
+.line { padding: 4px 0 4px 22px; position: relative; }
+.line::before { position: absolute; left: 0; top: 4px; font-size: 13px; }
+.line.warn { color: var(--warn); }
+.line.warn::before { content: '⚠'; }
+.line.danger { color: var(--danger); }
+.line.danger::before { content: '⚠'; }
+.line.ok { color: var(--success); }
+.line.ok::before { content: '✓'; }
+.line.info { color: var(--info); }
+.line.info::before { content: 'ℹ'; }
+
+/* CHECKLIST */
+.checklist { background: var(--warn-bg); border-left: 4px solid var(--gold); padding: 12px 16px; border-radius: 8px; }
+.checklist h3 { font-size: 13px; color: var(--gold-dark); margin-bottom: 8px; font-weight: 700; }
+.checklist ul { padding-left: 18px; font-size: 12px; color: var(--text); line-height: 1.8; }
+.checklist ul li { margin-bottom: 3px; }
+
+/* CTA */
+.cta {
+  background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+  color: white;
+  padding: 20px 18px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.cta h3 { font-size: 17px; margin-bottom: 6px; font-weight: 700; }
+.cta p { font-size: 12px; margin-bottom: 14px; opacity: 0.95; line-height: 1.6; }
+.cta-buttons { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: white; color: var(--red);
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+.cta-btn.outline { background: transparent; color: white; border: 1.5px solid white; }
+
+/* TRUST */
+.trust-card { background: var(--info-bg); padding: 14px; border-radius: 10px; margin-bottom: 10px; }
+.trust-card .title { font-size: 13px; font-weight: 700; color: var(--info); margin-bottom: 8px; }
+.trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.trust-item { font-size: 11px; color: var(--text); display: flex; align-items: center; gap: 4px; }
+.trust-item::before { content: '✓'; color: var(--success); font-weight: 700; }
+
+/* COMPARE */
+.compare-bar { display: flex; height: 28px; border-radius: 6px; overflow: hidden; margin: 10px 0; }
+.compare-segment { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: white; }
+.compare-segment.brokered { background: var(--danger); }
+.compare-segment.direct { background: var(--success); }
+.compare-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; display: flex; justify-content: space-between; }
+
+/* SHARE */
+.share { background: var(--white); border-radius: 10px; padding: 14px; text-align: center; margin-bottom: 10px; border: 1px solid var(--border); }
+.share-btn {
+  display: inline-block; margin: 4px 4px;
+  padding: 9px 16px; background: #FEE500; color: #1A1F36;
+  border-radius: 6px; text-decoration: none;
+  font-size: 12px; font-weight: 700;
+  border: none; cursor: pointer; font-family: inherit;
+}
+.share-btn.naver { background: #03C75A; color: white; }
+.share-btn.copy { background: var(--navy); color: white; }
+
+/* FOOTER */
+.footer { text-align: center; padding: 20px 0; font-size: 11px; color: var(--text-light); }
+.footer .brand { font-weight: 700; color: var(--navy); font-size: 13px; margin-bottom: 4px; }
+.footer .disclaimer { margin-top: 8px; font-size: 10px; line-height: 1.7; padding: 8px; background: var(--bg); border-radius: 6px; }
+
+/* RESPONSIVE */
+@media (max-width: 520px) {
+  .field-row, .field-row.three { grid-template-columns: 1fr; }
+  .metric-grid, .trust-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 20px; }
+  .save-hero .big { font-size: 24px; }
+  .ltv-current-info { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="hero">
+    <span class="hero-badge">🚨 AI금융응급실119 V2.0</span>
+    <h1>2·3금융 대출자동심사 + 대환세이브</h1>
+    <p class="sub">LTV 7단계 금리투명화 · 캐피탈 vs 대부 직비교 · 대환절약 즉시계산</p>
+    <div class="slogan">"은행이 버려도 AI금융응급실119가 골든타임을 지켜드립니다"</div>
+    <div class="ver">Version 2.0 · 2026.05 정부규제 반영</div>
+  </div>
+
+  <div class="alert-transparency">
+    <div class="title">⚠ 중개수수료 횡포, 알고 계십니까?</div>
+    <div class="body">
+      일부 대출중개업체는 차주에게 <strong>대출금액의 3~5%</strong>를 수수료로 받습니다.<br>
+      1억 대출시 <strong>300~500만원</strong> 자동 차감. AI금융응급실119는 <strong>중개수수료 ZERO</strong> 직거래입니다.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="num">1</span> 빠른 시작 (잠원·송파·동대구 실제 케이스)</div>
+    <div class="quick-cases">
+      <div class="label">↓ 실전 검증 케이스 자동 입력</div>
+      <button class="btn-quick" onclick="loadCase('jamwon')">📍 잠원위브 (서초 아파트 16.5억)</button>
+      <button class="btn-quick" onclick="loadCase('songpa')">📍 송파빌라 (39년차 5.55억)</button>
+      <button class="btn-quick" onclick="loadCase('daegu')">📍 동대구파크드림 (7.45억)</button>
+      <button class="btn-quick" onclick="resetForm()">🔄 초기화</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="num">2</span> 담보정보 입력 (3중평가 자동연동)</div>
+    <div class="field-row">
+      <div class="field">
+        <label>담보종류 <span class="req">*</span></label>
+        <select id="assetType">
+          <option value="apt">아파트</option>
+          <option value="officetel">주거용 오피스텔</option>
+          <option value="villa">빌라/다세대</option>
+          <option value="house">단독주택</option>
+          <option value="commercial">상가/오피스</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>지역 <span class="req">*</span></label>
+        <select id="region">
+          <option value="seoul_regulated">서울 규제지역</option>
+          <option value="seoul_normal">서울 일반</option>
+          <option value="metro">수도권</option>
+          <option value="local">지방광역시</option>
+          <option value="rural">기타지방</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>연식 (년차)</label>
+        <input type="number" id="buildAge" placeholder="예: 5" min="0" max="100">
+        <div class="help-text">30년↑ 노후건물 자동차감</div>
+      </div>
+      <div class="field">
+        <label>전용면적 (㎡)</label>
+        <input type="number" id="areaSqm" placeholder="예: 84.81" step="0.01">
+      </div>
+    </div>
+    <div class="field-row three">
+      <div class="field">
+        <label>① 감정평가가 (만원)</label>
+        <input type="number" id="appraisalPrice" placeholder="없으면 비움">
+        <div class="help-text">감정평가법인 평가</div>
+      </div>
+      <div class="field">
+        <label>② 실거래가 (만원) <span class="req">*</span></label>
+        <input type="number" id="realPrice" placeholder="예: 74500">
+        <div class="help-text">국토부 실거래 기준</div>
+      </div>
+      <div class="field">
+        <label>③ 경매감정가 (만원)</label>
+        <input type="number" id="auctionPrice" placeholder="없으면 비움">
+        <div class="help-text">법원경매 동일지역 감정가</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="num">3</span> 권리관계 입력</div>
+    <div class="field-row">
+      <div class="field">
+        <label>1순위 채권최고액 (만원)</label>
+        <input type="number" id="firstLien" placeholder="없으면 0">
+        <div class="help-text">실대출 아닌 채권최고액(110~130%)</div>
+      </div>
+      <div class="field">
+        <label>임차보증금 (만원)</label>
+        <input type="number" id="rentDeposit" placeholder="없으면 0">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>임차인 동의여부</label>
+        <select id="tenantConsent">
+          <option value="none">임차인 없음</option>
+          <option value="yes">동의 가능</option>
+          <option value="no">동의 불가/미확정</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>방 개수 (방공제 산정)</label>
+        <input type="number" id="rooms" placeholder="아파트 1, 빌라 방수" value="1" min="1" max="10">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="num">4</span> 차주정보 입력</div>
+    <div class="field-row">
+      <div class="field">
+        <label>차주 신분 <span class="req">*</span></label>
+        <select id="borrowerType">
+          <option value="employee">직장인 (정상근무)</option>
+          <option value="leave">직장인 (육아휴직중)</option>
+          <option value="business">개인사업자 (RTI 트랙)</option>
+          <option value="freelance">프리랜서</option>
+          <option value="none">무직/무소득</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>주택보유</label>
+        <select id="housingStatus">
+          <option value="none">무주택자</option>
+          <option value="one_dispose">1주택 처분조건</option>
+          <option value="one_keep">1주택 유지</option>
+          <option value="multi">다주택 (2주택+)</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row three">
+      <div class="field">
+        <label>연소득 (만원) <span class="req">*</span></label>
+        <input type="number" id="income" placeholder="예: 9000">
+      </div>
+      <div class="field">
+        <label>기존대출 월상환 (만원)</label>
+        <input type="number" id="existingDebt" placeholder="예: 200">
+      </div>
+      <div class="field">
+        <label>신용등급</label>
+        <select id="creditGrade">
+          <option value="1">1등급 (900↑)</option>
+          <option value="2">2등급 (800-899)</option>
+          <option value="3" selected>3등급 (700-799)</option>
+          <option value="4">4등급 (600-699)</option>
+          <option value="5">5등급 (500-599)</option>
+          <option value="6">6등급 이하</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="calculate()">📊 AI 자동심사 시작</button>
+  </div>
+
+  <div id="resultArea" class="result">
+
+    <div class="card">
+      <div class="card-title"><span class="num">5</span> 담보가치 3중평가 결과</div>
+      <div class="metric-grid">
+        <div class="metric">
+          <div class="metric-label">📐 보수적 평가가 (앱 적용가)</div>
+          <div class="metric-value" id="finalValue">-</div>
+          <div class="metric-note" id="finalNote">-</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">📊 3중평가 평균가</div>
+          <div class="metric-value" id="avgValue">-</div>
+          <div class="metric-note">감정·실거래·경매환산 평균</div>
+        </div>
+      </div>
+      <div class="valuation-detail" id="valuationDetail"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="num">6</span> LTV 드롭다운 (높을수록 금리↑)</div>
+      <div class="ltv-control">
+        <div class="header">
+          <span class="label">LTV (담보인정비율)</span>
+          <span class="value" id="ltvValue">70%</span>
+        </div>
+        <input type="range" class="ltv-slider" id="ltvSlider" min="60" max="90" step="5" value="70" oninput="updateLTV(this.value)">
+        <div class="ltv-tick-row">
+          <span class="ltv-tick">60%</span><span class="ltv-tick">65%</span><span class="ltv-tick">70%</span>
+          <span class="ltv-tick">75%</span><span class="ltv-tick">80%</span><span class="ltv-tick">85%</span><span class="ltv-tick">90%</span>
+        </div>
+        <div class="ltv-current-info">
+          <div class="ltv-info-cell highlight">
+            <div class="lbl">가용한도</div>
+            <div class="val" id="ltvAmount">-</div>
+          </div>
+          <div class="ltv-info-cell">
+            <div class="lbl">평균금리</div>
+            <div class="val" id="ltvRate">-</div>
+          </div>
+          <div class="ltv-info-cell">
+            <div class="lbl">월 상환금</div>
+            <div class="val" id="ltvMonthly">-</div>
+          </div>
+          <div class="ltv-info-cell">
+            <div class="lbl">총 이자비용</div>
+            <div class="val" id="ltvTotalInterest">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="help-text" style="margin-top: 8px;">💡 슬라이더를 좌우로 움직여 LTV별 한도·금리·월부담을 비교하세요.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="num">7</span> 캐피탈 vs 대부 동시비교</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 36%;">금융권·업체</th>
+            <th style="width: 12%; text-align: right;">LTV</th>
+            <th style="width: 16%; text-align: right;">금리</th>
+            <th style="width: 20%; text-align: right;">한도</th>
+            <th style="width: 16%; text-align: center;">가능</th>
+          </tr>
+        </thead>
+        <tbody id="matrixBody"></tbody>
+      </table>
+      <div class="help-text" style="margin-top: 8px;">💡 동일조건 같은 LTV에서 캐피탈(2금융)이 대부(3금융)보다 평균 6~8%p 저금리입니다.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="num">8</span> 대환세이브 계산기 (현재 대부 사용자 전용)</div>
+      <div class="field-row three">
+        <div class="field">
+          <label>현재 대출잔액 (만원)</label>
+          <input type="number" id="refiBalance" placeholder="예: 10000">
+        </div>
+        <div class="field">
+          <label>현재 금리 (%)</label>
+          <input type="number" id="refiCurrentRate" placeholder="예: 19" step="0.1">
+        </div>
+        <div class="field">
+          <label>잔여기간 (년)</label>
+          <input type="number" id="refiYears" placeholder="예: 10">
+        </div>
+      </div>
+      <button class="btn-primary" onclick="calculateRefinance()" style="margin-top: 4px; font-size: 14px; padding: 12px;">💰 대환세이브 계산</button>
+      <div id="refinanceResult" style="margin-top: 12px; display: none;">
+        <div class="save-hero">
+          <div class="small">2금융 대환시 총 절약금액</div>
+          <div class="big" id="totalSave">-</div>
+          <div class="desc" id="saveDesc">-</div>
+        </div>
+        <div class="save-detail">
+          <div class="row"><span>월 이자절약</span><span id="monthlySave">-</span></div>
+          <div class="row"><span>연 이자절약</span><span id="yearlySave">-</span></div>
+          <div class="row"><span>대환비용 (중도상환+등기설정)</span><span id="refiCost">-</span></div>
+          <div class="row total"><span>순 절약금액</span><span id="netSave">-</span></div>
+        </div>
+        <div style="margin-top: 10px; padding: 10px; background: var(--info-bg); border-radius: 6px; font-size: 11px; color: var(--info); line-height: 1.7;">
+          💡 <strong>대환절차</strong>: 무료상담 → 신규대출 승인 → 기존대출 상환 → 등기변경 (3~5일 소요)
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="num">9</span> 30년 심사역 AI 검토의견</div>
+      <div class="opinion-block" id="opinion"></div>
+    </div>
+
+    <div class="card">
+      <div class="checklist">
+        <h3>📋 추가확인 필요정보 (실제 진행시)</h3>
+        <ul id="needCheck"></ul>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h3>🚨 30년 전문가 무료상담</h3>
+      <p>역제안 구조 설계·1순위 대환·세입자 동의 협상<br>중개수수료 ZERO 직거래 보장</p>
+      <div class="cta-buttons">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCOtqEZiv8mzhyZkq8p64CoamvCQSRerHlHp9Gw-Qd7cdBbA/viewform" target="_blank" class="cta-btn">📝 무료상담</a>
+        <a href="tel:010-8745-7615" class="cta-btn outline">📞 010-8745-7615</a>
+      </div>
+    </div>
+
+    <div class="trust-card">
+      <div class="title">🛡 AI금융응급실119 고객권리 4대 보장</div>
+      <div class="trust-grid">
+        <div class="trust-item">중개수수료 ZERO</div>
+        <div class="trust-item">금감원 등록업체</div>
+        <div class="trust-item">법정금리 한도 준수</div>
+        <div class="trust-item">개인정보 외부유출 없음</div>
+      </div>
+      <div class="compare-bar">
+        <div class="compare-segment brokered" style="width: 35%;">중개시 수수료 3~5%</div>
+        <div class="compare-segment direct" style="width: 65%;">직거래 0%</div>
+      </div>
+      <div class="compare-label"><span>1억 대출 중개</span><span>1억 대출 직거래</span></div>
+    </div>
+
+    <div class="share">
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px; font-weight: 600;">친구·가족에게 공유하기</p>
+      <button class="share-btn copy" onclick="copyResult()">📋 결과복사</button>
+      <a class="share-btn naver" href="https://blog.naver.com/okdaebucapital" target="_blank">⚕ 사례블로그</a>
+      <a class="share-btn" href="https://blog.naver.com/okdaebucapital" target="_blank">📝 카카오공유</a>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="brand">AI금융응급실119 · 권상훈의 대출플랫폼</div>
+    <div>OK대부자본교대 · 금융감독원 등록대부업체</div>
+    <div class="disclaimer">
+      ※ 본 결과는 AI 자동심사 추정치이며 실제 승인을 보장하지 않습니다.<br>
+      ※ 2026년 5월 스트레스DSR 3단계 시행 기준으로 산정되었습니다.<br>
+      ※ 법정최고금리 연 20% 한도 내에서만 진행합니다.<br>
+      ※ 과도한 대출은 신용도 하락의 원인이 됩니다.
+    </div>
+  </div>
+
+</div>
+
+<script>
+const POLICY_DB = {
+  legal_max_rate: 20.0,
+  stress_dsr: { rate_pp: 1.5, bank_ratio: 0.40, secondary_ratio: 0.50 },
+  ltv_by_lender: {
+    saving_bank_apt: 0.80, saving_bank_villa: 0.70,
+    capital_apt: 0.85, capital_villa: 0.75,
+    insurance_apt: 0.80, insurance_villa: 0.70,
+    daebu_apt: 0.90, daebu_villa: 0.80,
+    rti_business: 0.90
+  },
+  rate_by_lender: {
+    saving_bank: { min: 6.0, avg: 7.5, max: 10.0 },
+    capital: { min: 8.0, avg: 11.0, max: 15.0 },
+    insurance: { min: 7.5, avg: 9.5, max: 12.0 },
+    daebu: { min: 15.0, avg: 18.0, max: 20.0 },
+    rti: { min: 8.0, avg: 10.0, max: 13.0 }
+  },
+  room_deduction: {
+    seoul_regulated: 5500, seoul_normal: 5500,
+    metro: 4800, local: 2800, rural: 2500
+  },
+  asset_adjust: {
+    apt: 1.0, officetel: 0.95, villa: 0.90, house: 0.85, commercial: 0.80
+  },
+  age_penalty: { 30: 0.95, 40: 0.90 }
+};
+
+const LENDERS = [
+  { name: 'JT친애저축은행', tier: 'saving_bank', ltv_apt: 0.80, ltv_villa: 0.70, rate: 9.0, type: 2 },
+  { name: 'OK저축은행', tier: 'saving_bank', ltv_apt: 0.80, ltv_villa: 0.70, rate: 8.5, type: 2 },
+  { name: 'OK캐피탈', tier: 'capital', ltv_apt: 0.85, ltv_villa: 0.75, rate: 11.5, type: 2 },
+  { name: 'JB우리캐피탈', tier: 'capital', ltv_apt: 0.85, ltv_villa: 0.75, rate: 12.0, type: 2 },
+  { name: '메리츠캐피탈', tier: 'capital', ltv_apt: 0.85, ltv_villa: 0.75, rate: 13.5, type: 2 },
+  { name: '웰컴캐피탈', tier: 'capital', ltv_apt: 0.85, ltv_villa: 0.75, rate: 12.5, type: 2 },
+  { name: 'OK대부자본교대', tier: 'daebu', ltv_apt: 0.90, ltv_villa: 0.80, rate: 16.0, type: 3, isOurs: true },
+  { name: '산와대부', tier: 'daebu', ltv_apt: 0.90, ltv_villa: 0.80, rate: 18.0, type: 3 },
+  { name: '러시앤캐시', tier: 'daebu', ltv_apt: 0.90, ltv_villa: 0.80, rate: 19.0, type: 3 }
+];
+
+const CASES = {
+  jamwon: {
+    assetType: 'apt', region: 'seoul_regulated', buildAge: 13, areaSqm: 46.95,
+    appraisalPrice: 0, realPrice: 165000, auctionPrice: 0,
+    firstLien: 59400, rentDeposit: 0, tenantConsent: 'none', rooms: 1,
+    borrowerType: 'leave', housingStatus: 'one_dispose', income: 9000, existingDebt: 0, creditGrade: 3
+  },
+  songpa: {
+    assetType: 'villa', region: 'seoul_normal', buildAge: 39, areaSqm: 46.77,
+    appraisalPrice: 56100, realPrice: 55500, auctionPrice: 0,
+    firstLien: 0, rentDeposit: 26000, tenantConsent: 'no', rooms: 2,
+    borrowerType: 'business', housingStatus: 'one_keep', income: 5000, existingDebt: 100, creditGrade: 3
+  },
+  daegu: {
+    assetType: 'apt', region: 'local', buildAge: 4, areaSqm: 84.81,
+    appraisalPrice: 74500, realPrice: 74500, auctionPrice: 0,
+    firstLien: 80640, rentDeposit: 0, tenantConsent: 'none', rooms: 1,
+    borrowerType: 'business', housingStatus: 'one_keep', income: 7600, existingDebt: 0, creditGrade: 3
+  }
+};
+
+let currentResult = null;
+
+function loadCase(caseName) {
+  const c = CASES[caseName];
+  if (!c) return;
+  Object.keys(c).forEach(k => {
+    const el = document.getElementById(k);
+    if (el) el.value = c[k];
+  });
+  document.getElementById('resultArea').classList.remove('show');
+  document.querySelector('.card').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => calculate(), 300);
+}
+
+function resetForm() {
+  document.querySelectorAll('input, select').forEach(el => {
+    if (el.type === 'number') el.value = '';
+    if (el.tagName === 'SELECT') el.selectedIndex = 0;
+  });
+  document.getElementById('rooms').value = 1;
+  document.getElementById('resultArea').classList.remove('show');
+}
+
+function calc3WayValuation(appraisal, real, auction, assetType, age) {
+  const values = [];
+  const methods = [];
+  if (appraisal > 0) { values.push(appraisal); methods.push(`감정평가 ${appraisal.toLocaleString()}만`); }
+  if (real > 0) { values.push(real); methods.push(`실거래가 ${real.toLocaleString()}만`); }
+  if (auction > 0) {
+    const auctionAdjusted = Math.round(auction / 0.85);
+    values.push(auctionAdjusted);
+    methods.push(`경매환산 ${auctionAdjusted.toLocaleString()}만 (낙찰가율 85% 적용)`);
+  }
+  if (values.length === 0) return { final: 0, avg: 0, methods: ['평가가 없음'] };
+
+  const avg = Math.round(values.reduce((a,b)=>a+b,0) / values.length);
+  const minV = Math.min(...values);
+  let final = Math.round(minV * 0.95);
+
+  const typeAdj = POLICY_DB.asset_adjust[assetType] || 1.0;
+  final = Math.round(final * typeAdj);
+  let agePenalty = '';
+  if (age >= 40) { final = Math.round(final * 0.90); agePenalty = '40년차+ -10%'; }
+  else if (age >= 30) { final = Math.round(final * 0.95); agePenalty = '30년차+ -5%'; }
+
+  return { final, avg, methods, typeAdj, agePenalty };
+}
+
+function calcRoomDeduction(region, rooms, tenantConsent, rentDeposit) {
+  if (rentDeposit > 0 && tenantConsent === 'yes') return 0;
+  if (rentDeposit > 0 && tenantConsent === 'no') return rentDeposit;
+  const perRoom = POLICY_DB.room_deduction[region] || 2500;
+  return perRoom * (rooms || 1);
+}
+
+function calcMonthlyPayment(principal, annualRate, years) {
+  if (principal <= 0 || annualRate <= 0 || years <= 0) return 0;
+  const r = annualRate / 100 / 12;
+  const n = years * 12;
+  return Math.round(principal * r / (1 - Math.pow(1+r, -n)));
+}
+
+function calcLtvMatrix(adjustedValue, deductions, isApt) {
+  const matrix = [];
+  for (let ltv = 60; ltv <= 90; ltv += 5) {
+    const ltvFraction = ltv / 100;
+    let rate;
+    if (ltv <= 65) rate = 7.0 + (ltv-60)*0.4;
+    else if (ltv <= 70) rate = 9.0;
+    else if (ltv <= 75) rate = 11.0;
+    else if (ltv <= 80) rate = 13.5;
+    else if (ltv <= 85) rate = 16.5;
+    else rate = 19.0;
+
+    const grossAmount = Math.round(adjustedValue * ltvFraction);
+    const netAmount = Math.max(0, grossAmount - deductions);
+    const monthly = calcMonthlyPayment(netAmount, rate, 30);
+    const totalInterest = monthly * 360 - netAmount;
+
+    matrix.push({ ltv, rate, grossAmount, netAmount, monthly, totalInterest });
+  }
+  return matrix;
+}
+
+function calculate() {
+  const input = {
+    assetType: document.getElementById('assetType').value,
+    region: document.getElementById('region').value,
+    buildAge: parseInt(document.getElementById('buildAge').value) || 0,
+    appraisalPrice: parseFloat(document.getElementById('appraisalPrice').value) || 0,
+    realPrice: parseFloat(document.getElementById('realPrice').value) || 0,
+    auctionPrice: parseFloat(document.getElementById('auctionPrice').value) || 0,
+    firstLien: parseFloat(document.getElementById('firstLien').value) || 0,
+    rentDeposit: parseFloat(document.getElementById('rentDeposit').value) || 0,
+    tenantConsent: document.getElementById('tenantConsent').value,
+    rooms: parseInt(document.getElementById('rooms').value) || 1,
+    borrowerType: document.getElementById('borrowerType').value,
+    housingStatus: document.getElementById('housingStatus').value,
+    income: parseFloat(document.getElementById('income').value) || 0,
+    existingDebt: parseFloat(document.getElementById('existingDebt').value) || 0,
+    creditGrade: parseInt(document.getElementById('creditGrade').value)
+  };
+
+  if (input.appraisalPrice === 0 && input.realPrice === 0 && input.auctionPrice === 0) {
+    alert('담보가격 3종 중 최소 1개는 입력해 주세요.');
+    return;
+  }
+
+  const valuation = calc3WayValuation(input.appraisalPrice, input.realPrice, input.auctionPrice, input.assetType, input.buildAge);
+  const roomDeduction = calcRoomDeduction(input.region, input.rooms, input.tenantConsent, input.rentDeposit);
+  const totalDeduction = input.firstLien + (input.tenantConsent === 'no' && input.rentDeposit > 0 ? input.rentDeposit : 0) + (input.tenantConsent === 'none' ? roomDeduction : 0);
+
+  const isApt = input.assetType === 'apt' || input.assetType === 'officetel';
+  const ltvMatrix = calcLtvMatrix(valuation.final, totalDeduction, isApt);
+
+  currentResult = { input, valuation, totalDeduction, ltvMatrix, roomDeduction };
+
+  renderValuation(valuation);
+  renderLtvSlider(70);
+  renderLenderMatrix(input, valuation.final, totalDeduction);
+  renderOpinion(input, valuation, totalDeduction, ltvMatrix);
+  renderChecklist(input);
+
+  document.getElementById('resultArea').classList.add('show');
+  setTimeout(() => {
+    document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
+}
+
+function renderValuation(v) {
+  document.getElementById('finalValue').textContent = v.final.toLocaleString() + ' 만원';
+  document.getElementById('avgValue').textContent = v.avg.toLocaleString() + ' 만원';
+  document.getElementById('finalNote').textContent = '최저값 × 95% 보수가' + (v.typeAdj < 1 ? ` · 종별 ${Math.round(v.typeAdj*100)}%` : '') + (v.agePenalty ? ` · ${v.agePenalty}` : '');
+
+  let detail = '<div><span class="label">3중평가 내역:</span></div>';
+  v.methods.forEach(m => { detail += '<div>• ' + m + '</div>'; });
+  detail += '<div style="margin-top:6px;"><span class="label">최종 적용:</span> 가장 보수적인 평가가에 95% 적용 (담보가치 안전성 확보)</div>';
+  document.getElementById('valuationDetail').innerHTML = detail;
+}
+
+function renderLtvSlider(ltv) {
+  if (!currentResult) return;
+  const item = currentResult.ltvMatrix.find(m => m.ltv === ltv);
+  if (!item) return;
+
+  document.getElementById('ltvValue').textContent = ltv + '%';
+  document.getElementById('ltvAmount').textContent = item.netAmount > 0 ? item.netAmount.toLocaleString() + '만' : '한도 없음';
+  document.getElementById('ltvRate').textContent = item.rate.toFixed(1) + '%';
+  document.getElementById('ltvMonthly').textContent = item.monthly.toLocaleString() + '만';
+  document.getElementById('ltvTotalInterest').textContent = item.totalInterest > 0 ? Math.round(item.totalInterest/10000) + '억' + (item.totalInterest%10000 ? Math.round((item.totalInterest%10000)/100)*100 : '') + '만' : '0';
+}
+
+function updateLTV(ltv) {
+  renderLtvSlider(parseInt(ltv));
+}
+
+function renderLenderMatrix(input, finalValue, totalDeduction) {
+  const isApt = input.assetType === 'apt' || input.assetType === 'officetel';
+  const rows = [];
+  let bestSafe = null;
+  let bestSafeAmount = 0;
+
+  LENDERS.forEach(lender => {
+    const ltvKey = isApt ? 'ltv_apt' : 'ltv_villa';
+    const ltv = lender[ltvKey];
+    let grossAmount = Math.round(finalValue * ltv);
+    let netAmount = Math.max(0, grossAmount - totalDeduction);
+
+    if (input.borrowerType === 'none' && lender.type < 3) netAmount = 0;
+    if (input.creditGrade >= 6 && lender.type < 3) netAmount = 0;
+    if (input.borrowerType === 'leave' && lender.type === 2 && lender.tier === 'saving_bank') netAmount = Math.round(netAmount * 0.5);
+
+    let possibleClass = 'badge-ok';
+    let possibleText = '가능';
+    if (netAmount <= 0) { possibleClass = 'badge-no'; possibleText = '불가'; }
+    else if (input.borrowerType === 'leave' && lender.tier === 'saving_bank') { possibleClass = 'badge-warn'; possibleText = '제한'; }
+
+    if (netAmount > 0 && lender.type === 2 && netAmount > bestSafeAmount) {
+      bestSafeAmount = netAmount;
+      bestSafe = lender.name;
+    }
+
+    rows.push({ lender, ltv: Math.round(ltv*100), netAmount, possibleClass, possibleText });
+  });
+
+  let html = '';
+  rows.forEach(r => {
+    const isBest = r.lender.name === bestSafe;
+    const tierLabel = r.lender.type === 2 ? '2금융' : '3금융';
+    const ours = r.lender.isOurs ? ' <span style="color: var(--red); font-weight: 700;">★</span>' : '';
+    html += '<tr' + (isBest ? ' class="best"' : '') + '>';
+    html += '<td>' + r.lender.name + ours + '<span class="row-sub">' + tierLabel + ' · ' + r.lender.tier + '</span></td>';
+    html += '<td class="amount">' + r.ltv + '%</td>';
+    html += '<td class="amount">' + r.lender.rate.toFixed(1) + '%</td>';
+    html += '<td class="amount">' + (r.netAmount > 0 ? r.netAmount.toLocaleString() + '만' : '−') + '</td>';
+    html += '<td class="center"><span class="' + r.possibleClass + '">' + r.possibleText + '</span></td>';
+    html += '</tr>';
+  });
+  document.getElementById('matrixBody').innerHTML = html;
+}
+
+function renderOpinion(input, valuation, totalDeduction, ltvMatrix) {
+  const ltv80 = ltvMatrix.find(m => m.ltv === 80);
+  const ltv85 = ltvMatrix.find(m => m.ltv === 85);
+  const maxAmount = ltv85 ? ltv85.netAmount : 0;
+  let grade = maxAmount > 30000 ? 'A' : maxAmount > 15000 ? 'B' : maxAmount > 5000 ? 'C' : 'D';
+
+  let html = '<span class="grade grade-' + grade + '">진행가능성 ' + grade + '등급</span>';
+
+  const lienRatio = valuation.final > 0 ? input.firstLien / valuation.final : 0;
+  if (lienRatio > 0.85) {
+    html += '<div class="line danger">1순위 잠식률 ' + Math.round(lienRatio*100) + '% → 후순위 거의 불가, 1순위 대환+RTI사업자 단일구조 권고</div>';
+  }
+
+  if (input.borrowerType === 'leave') {
+    html += '<div class="line warn">육아휴직중 → 저축은행 DSR 막힘, 캐피탈·대부업 또는 사업자 트랙 권고</div>';
+  }
+
+  if (input.borrowerType === 'business') {
+    html += '<div class="line ok">사업자 → RTI 1.25배 충족시 DSR 회피, 가장 유리한 트랙</div>';
+  }
+
+  if (input.region === 'seoul_regulated' && input.housingStatus === 'multi') {
+    html += '<div class="line danger">서울 규제지역 + 다주택 → 추가구입자금 금지, 생활안정자금 1억 한도</div>';
+  }
+
+  if (input.rentDeposit > 0 && input.tenantConsent === 'no') {
+    html += '<div class="line warn">임차보증금 ' + input.rentDeposit.toLocaleString() + '만 + 동의 미확정 → 동의서 확보시 한도 +' + input.rentDeposit.toLocaleString() + '만 증액</div>';
+  }
+
+  if (input.appraisalPrice === 0 && input.auctionPrice === 0) {
+    html += '<div class="line info">실거래가 단일평가 → 감정평가서 추가시 신뢰도↑</div>';
+  }
+
+  if (input.buildAge >= 30 && input.assetType === 'villa') {
+    html += '<div class="line warn">' + input.buildAge + '년차 노후빌라 → 재건축·재개발 진행여부 확인 필요</div>';
+  }
+
+  if (grade === 'A' || grade === 'B') {
+    const best2 = LENDERS.filter(l => l.type === 2).sort((a,b)=>a.rate-b.rate)[0];
+    html += '<div class="line ok"><strong>최적 추천:</strong> ' + best2.name + ' / 금리 ' + best2.rate.toFixed(1) + '% / LTV 80~85%</div>';
+  } else if (grade === 'C') {
+    html += '<div class="line info"><strong>최적 추천:</strong> 캐피탈 후순위 또는 OK대부자본교대 직거래</div>';
+  } else {
+    html += '<div class="line danger"><strong>역제안 필요:</strong> 현 구조 진행불가 → 1순위 대환·RTI사업자·자금용도 재조정 검토</div>';
+  }
+
+  document.getElementById('opinion').innerHTML = html;
+}
+
+function renderChecklist(input) {
+  const checks = ['등기부등본 (가압류·신탁·근저당 정확수치)'];
+  if (input.rentDeposit > 0) checks.push('전입세대열람·임대차계약서·확정일자 확인');
+  if (input.rentDeposit > 0 && input.tenantConsent !== 'yes') checks.push('세입자 동의서 가능여부 사전협상');
+  if (input.appraisalPrice === 0) checks.push('정식 감정평가서 또는 인근 실거래 3건');
+  checks.push('NICE/KCB 신용점수 + 전체 대출잔액 합계');
+  if (input.borrowerType === 'employee' || input.borrowerType === 'leave') checks.push('재직증명·원천징수영수증·급여명세 3개월');
+  if (input.borrowerType === 'leave') checks.push('복직예정증명서·휴직중 급여수령 명세');
+  if (input.borrowerType === 'business') checks.push('사업자등록증·부가세과세표준증명·소득금액증명원·RTI 산정자료');
+  if (input.housingStatus === 'multi') checks.push('보유주택 합산 등기부·시세자료 (다주택 규제 확인)');
+  if (input.region === 'seoul_regulated') checks.push('규제지역 다주택자 추가구입 제한 여부 검토');
+
+  document.getElementById('needCheck').innerHTML = checks.map(c => '<li>' + c + '</li>').join('');
+}
+
+function calculateRefinance() {
+  const balance = parseFloat(document.getElementById('refiBalance').value) || 0;
+  const currentRate = parseFloat(document.getElementById('refiCurrentRate').value) || 0;
+  const years = parseFloat(document.getElementById('refiYears').value) || 0;
+
+  if (balance === 0 || currentRate === 0 || years === 0) {
+    alert('대출잔액·현재금리·잔여기간 모두 입력해 주세요.');
+    return;
+  }
+
+  const targetRate = 11.0;
+  const rateDiff = currentRate - targetRate;
+  if (rateDiff <= 0) {
+    alert('이미 캐피탈 수준 금리입니다. 대환 효과가 없습니다.');
+    return;
+  }
+
+  const monthlySave = Math.round(balance * (rateDiff / 100) / 12);
+  const yearlySave = monthlySave * 12;
+  const totalSave = yearlySave * years;
+  const refiCost = Math.round(balance * 0.013);
+  const netSave = totalSave - refiCost;
+
+  document.getElementById('totalSave').textContent = totalSave >= 10000 ? (totalSave/10000).toFixed(1) + '억원' : totalSave.toLocaleString() + '만원';
+  document.getElementById('saveDesc').textContent = '현재 ' + currentRate + '% → 대환 ' + targetRate + '% (' + rateDiff.toFixed(1) + '%p 인하) 적용시 ' + years + '년간 총 절약금액';
+  document.getElementById('monthlySave').textContent = monthlySave.toLocaleString() + '만원';
+  document.getElementById('yearlySave').textContent = yearlySave.toLocaleString() + '만원';
+  document.getElementById('refiCost').textContent = '-' + refiCost.toLocaleString() + '만원';
+  document.getElementById('netSave').textContent = (netSave >= 10000 ? (netSave/10000).toFixed(1) + '억원' : netSave.toLocaleString() + '만원');
+
+  document.getElementById('refinanceResult').style.display = 'block';
+  document.getElementById('refinanceResult').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function copyResult() {
+  if (!currentResult) { alert('먼저 심사를 진행해 주세요.'); return; }
+  const v = currentResult.valuation;
+  const ltv70 = currentResult.ltvMatrix.find(m => m.ltv === 70);
+  const text = '[AI금융응급실119 V2.0 심사결과]\n\n' +
+    '담보가치 (보수가): ' + v.final.toLocaleString() + '만원\n' +
+    '3중평가 평균: ' + v.avg.toLocaleString() + '만원\n' +
+    'LTV 70% 한도: ' + (ltv70 ? ltv70.netAmount.toLocaleString() : '0') + '만원\n\n' +
+    '🚨 무료상담: 010-8745-7615\n' +
+    '📝 상담폼: blog.naver.com/okdaebucapital\n\n' +
+    'AI금융응급실119 · 중개수수료 ZERO 직거래';
+  navigator.clipboard.writeText(text).then(() => alert('결과가 복사되었습니다!'));
+}
+</script>
+
+</body>
+</html>
